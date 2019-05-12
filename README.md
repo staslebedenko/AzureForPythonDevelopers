@@ -7,7 +7,14 @@ You will have a hands on with Azure web interface and Azure CLI via bash.
 Intial version of workshop is oriented towards Windows OS.
 Requirenment is a Windows, VS Code, Git, Python 3.7
 
+STEP 1. Application scaffold
+STEP 2. Application configuration change.
+	Azure infrastructure setup with Azure CLI.
+	Deployment of the application.
+
+STEP 1.
 -------------
+
 
 Lets start with installation of components.
 We will work with Python virtual environments.
@@ -79,6 +86,39 @@ Lets proceed with application itself
 5. Start your application to verify changes
 	
 	    python manage.py runserver 5050
+
+
+STEP 2.
+-------------
+We need to slightly update our repo  with following code.
+
+1. Add requirements.txt with following text
+We need white noise for static files handling.
+
+		Django==2.2.1
+		whitenoise==4.1.2
+		
+2. Update file AzurePythonBootcampWeb/settings.py by
+	Replacing
+	
+		ALLOWED_HOSTS = []
+	With 
+	
+		ALLOWED_HOSTS = ALLOWED_HOSTS = [os.environ['WEBSITE_SITE_NAME'] + '.azurewebsites.net', '127.0.0.1'] if 'WEBSITE_SITE_NAME' in os.environ else []
+
+	Replacing 
+	
+		    'django.middleware.security.SecurityMiddleware',
+		    
+	With
+	
+		    'django.middleware.security.SecurityMiddleware',
+    			'whitenoise.middleware.WhiteNoiseMiddleware',
+			
+	Adding at the end of file
+
+	STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+	STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 -------------
 Lets move to the Azure part
