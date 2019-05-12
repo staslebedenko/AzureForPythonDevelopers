@@ -76,7 +76,8 @@ Lets proceed with application itself
 	
 4. Last step is to modify file AzurePythonBootcampWeb/urls.py with code below
 
-        from django.urls import include
+        	from django.urls import include
+		from django.urls import path
 
         urlpatterns = [
           #path('admin/', admin.site.urls),
@@ -104,7 +105,7 @@ We need white noise for static files handling.
 		ALLOWED_HOSTS = []
 	With 
 	
-		ALLOWED_HOSTS = ALLOWED_HOSTS = [os.environ['WEBSITE_SITE_NAME'] + '.azurewebsites.net', '127.0.0.1'] if 'WEBSITE_SITE_NAME' in os.environ else []
+		ALLOWED_HOSTS = [os.environ['WEBSITE_SITE_NAME'] + '.azurewebsites.net', '127.0.0.1'] if 'WEBSITE_SITE_NAME' in os.environ else []
 
 	Replacing 
 	
@@ -117,8 +118,9 @@ We need white noise for static files handling.
 			
 	Adding at the end of file
 
-	STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-	STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+		STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+	
+		STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 -------------
 Lets move to the Azure part
