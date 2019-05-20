@@ -6,6 +6,8 @@ You will have a hands on with Azure web interface and Azure CLI via bash.
 
 Intial version of workshop is oriented towards Windows OS.
 Requirenment is a Windows, VS Code, Git, Python 3.7
+You can use git command line or SourceTree for repository init and commits to master.
+Dont forget to add .gitignore file for python in your master branch. 
 
 STEP 1. Application scaffold
 STEP 2. Application configuration change.
@@ -91,7 +93,15 @@ Lets proceed with application itself
 
 STEP 2.
 -------------
-We need to slightly update our repo  with following code.
+Initialize git repository for your folder and add .gitignore for python (you can use ignore file from my repo)
+IMPORTANT! Root folder is the folder with manage.py file. 
+
+	git init
+	git add
+	git add .gitignore
+	git commit	
+
+Then We need to slightly update our repo  with following code.
 
 1. Add requirements.txt with following text
 We need white noise for static files handling.
@@ -163,13 +173,13 @@ Observe output results, yes there is a docker container
 
 6. Lets add simple logging for your application. Application insights we add later on.
 
-		export grounName="atomspace-azureforpython-webapps"
+		export groupName="atomspace-azureforpython-webapps"
 		export appName = "AtomAzurePythonWeb2019"
 		az webapp log config --name #appName --resource-group $grounName --docker-container-logging filesystem
 
 7. To read logs in bash console, execute command
 
-		az webapp log tail --name $appName --resource-group $grounName
+		az webapp log tail --name $appName --resource-group $groupName
 
 8. To read application logs manually
 
@@ -178,6 +188,6 @@ Observe output results, yes there is a docker container
 9. Dont forget to delete your subscription
 
 		export grounName="atomspace-azureforpython-webapps"
-		az group delete --name $grounName
+		az group delete --name $groupName
 
 
