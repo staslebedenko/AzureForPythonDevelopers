@@ -1,6 +1,9 @@
 # Azure for Python developers
 Workshop repository for AtomSpace and IT2School community.
 
+You can do this workshop(lab) by yourself, 
+just use detailed steps below and get free Azure account https://azure.microsoft.com/en-us/free/.
+
 Goal is to create simple Django application and deploy it via Git to Azure Web App.
 You will have a hands on with Azure web interface and Azure CLI via bash.
 
